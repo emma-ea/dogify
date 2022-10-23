@@ -6,6 +6,7 @@ import com.emma_ea.dogify.dogify.db.DogifyDatabase
 import com.emma_ea.dogify.model.FetchBreedUsecase
 import com.emma_ea.dogify.model.GetBreedsUsecase
 import com.emma_ea.dogify.model.ToggleFavouriteStateUsecase
+import com.emma_ea.dogify.repository.BreedsLocalSource
 import com.emma_ea.dogify.repository.BreedsRemoteSource
 import com.emma_ea.dogify.repository.BreedsRepository
 import com.emma_ea.dogify.utils.getDispatcherProvider
@@ -20,8 +21,9 @@ private val useCaseModule = module {
 }
 
 private val repositories = module {
-    single { BreedsRepository(get()) }
+    single { BreedsRepository(get(), get()) }
     factory { BreedsRemoteSource(get(), get()) }
+    factory { BreedsLocalSource(get(), get()) }
 }
 
 private val apiModule = module {
@@ -37,7 +39,7 @@ private val databaseModule = module {
 }
 
 private val sharedModules = listOf(
-    useCaseModule, repositories, apiModule, utilityModule
+    useCaseModule, repositories, apiModule, utilityModule, databaseModule
 )
 
 fun initKoin(appDeclaration: KoinAppDeclaration = {}) =
