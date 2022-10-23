@@ -7,8 +7,10 @@ import com.emma_ea.dogify.usecase.FetchBreedUsecase
 import com.emma_ea.dogify.usecase.GetBreedsUsecase
 import com.emma_ea.dogify.usecase.ToggleFavouriteStateUsecase
 import com.emma_ea.dogify.repository.BreedsRepository
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(
     breedsRepository: BreedsRepository,
@@ -29,6 +31,9 @@ class MainViewModel(
     private val _shouldFilterFavourites = MutableStateFlow(false)
     val shouldFilterFavourites: StateFlow<Boolean> = _shouldFilterFavourites
 
+    private val _favouritesCount = MutableStateFlow(0)
+    val favouritesCount: StateFlow<Int> = _favouritesCount
+
     val breeds = breedsRepository.breeds.combine(shouldFilterFavourites) {
             breeds, shouldFilterFavourites ->
             if (shouldFilterFavourites) {
@@ -37,7 +42,8 @@ class MainViewModel(
                 breeds
             }.also {
                 _state.value = if (it.isEmpty()) State.EMPTY else State.NORMAL
-        }
+                _favouritesCount.value = breeds.count { it.isFavourite }
+            }
     }.stateIn(
         viewModelScope,
         SharingStarted.WhileSubscribed(),
