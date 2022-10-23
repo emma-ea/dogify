@@ -1,11 +1,11 @@
-package com.emma_ea.dogify.viewmodel
+package com.emma_ea.dogify.android.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.emma_ea.dogify.model.Breed
-import com.emma_ea.dogify.model.FetchBreedUsecase
-import com.emma_ea.dogify.model.GetBreedsUsecase
-import com.emma_ea.dogify.model.ToggleFavouriteStateUsecase
+import com.emma_ea.dogify.usecase.FetchBreedUsecase
+import com.emma_ea.dogify.usecase.GetBreedsUsecase
+import com.emma_ea.dogify.usecase.ToggleFavouriteStateUsecase
 import com.emma_ea.dogify.repository.BreedsRepository
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

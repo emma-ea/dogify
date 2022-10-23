@@ -1,5 +1,6 @@
-package com.emma_ea.dogify.model
+package com.emma_ea.dogify.usecase
 
+import com.emma_ea.dogify.model.Breed
 import com.emma_ea.dogify.repository.BreedsRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject

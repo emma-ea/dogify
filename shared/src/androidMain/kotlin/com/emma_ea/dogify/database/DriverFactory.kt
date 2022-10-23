@@ -1,5 +1,6 @@
-package com.emma_ea.dogify.db
+package com.emma_ea.dogify.database
 
+import com.emma_ea.dogify.db.DogifyDatabase
 import com.squareup.sqldelight.android.AndroidSqliteDriver
 import com.squareup.sqldelight.db.SqlDriver
 import org.koin.android.ext.koin.androidContext

@@ -31,26 +31,26 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.3.2"
+        kotlinCompilerExtensionVersion = "1.3.1"
     }
 }
 
+val lifecycleVersion = "2.3.1"
+val composeVersion = "1.2.1"
+val accompanistVersion = "0.13.0"
+
 dependencies {
-    val lifecycleVersion = "2.3.1"
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.4.0")
     implementation("androidx.appcompat:appcompat:1.3.1")
     implementation("androidx.constraintlayout:constraintlayout:2.1.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
-    // koin
-    implementation("io.insert-koin:koin-android:3.2.0")
     // android lifecycle
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-    implementation("androidx.lifecycle:lifecycle-viewmodel- ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
     // android kotlin extensions
     implementation("androidx.core:core-ktx:1.6.0")
     // compose activity
-    val composeVersion = "1.2.1"
     implementation("androidx.activity:activity-compose:1.5.1")
     implementation("androidx.compose.ui:ui:$composeVersion")
     // tooling support (previews, etc)
@@ -66,7 +66,6 @@ dependencies {
     // mdc theme
     implementation("com.google.android.material:compose-theme-adapter:1.1.16")
     // accompanist lib
-    val accompanistVersion = "0.13.0"
     implementation("com.google.accompanist:accompanist-coil:$accompanistVersion")
     implementation("com.google.accompanist:accompanist-swiperefresh:$accompanistVersion")
 }

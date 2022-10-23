@@ -1,4 +1,4 @@
-package com.emma_ea.dogify.db
+package com.emma_ea.dogify.database
 
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver

@@ -1,11 +1,11 @@
 package com.emma_ea.dogify.di
 
 import com.emma_ea.dogify.api.BreedsApi
+import com.emma_ea.dogify.database.createDriver
 import com.emma_ea.dogify.db.DogifyDatabase
-import com.emma_ea.dogify.db.createDriver
-import com.emma_ea.dogify.model.FetchBreedUsecase
-import com.emma_ea.dogify.model.GetBreedsUsecase
-import com.emma_ea.dogify.model.ToggleFavouriteStateUsecase
+import com.emma_ea.dogify.usecase.FetchBreedUsecase
+import com.emma_ea.dogify.usecase.GetBreedsUsecase
+import com.emma_ea.dogify.usecase.ToggleFavouriteStateUsecase
 import com.emma_ea.dogify.repository.BreedsLocalSource
 import com.emma_ea.dogify.repository.BreedsRemoteSource
 import com.emma_ea.dogify.repository.BreedsRepository
@@ -17,7 +17,7 @@ import org.koin.dsl.module
 private val useCaseModule = module {
     factory { GetBreedsUsecase() }
     factory { FetchBreedUsecase() }
-    factory {ToggleFavouriteStateUsecase() }
+    factory { ToggleFavouriteStateUsecase() }
 }
 
 private val repositories = module {
