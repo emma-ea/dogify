@@ -1,4 +1,4 @@
-package com.emma_ea.dogify.android
+package com.emma_ea.dogify.android.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -8,21 +8,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.toUpperCase
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.emma_ea.dogify.android.viewmodel.MainViewModel
-import com.emma_ea.dogify.android.viewmodel.State
 import com.emma_ea.dogify.model.Breed
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
-import java.util.*
+import kotlinx.coroutines.launch
 
 @Composable
 fun MainScreen(
@@ -93,10 +84,18 @@ fun MainScreen(
                        Spacer(Modifier.weight(1f))
                    }
                }
+
+               if (events == MainViewModel.Event.ERROR) {
+                   snackbarCoroutineScope.launch {
+                       scaffoldState.snackbarHostState.apply {
+                           currentSnackbarData?.dismiss()
+                           showSnackbar("Oops something went wrong...")
+                       }
+                   }
+               }
            } 
         }
     }
-
 }
 
 @Composable
