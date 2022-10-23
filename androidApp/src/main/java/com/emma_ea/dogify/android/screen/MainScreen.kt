@@ -74,7 +74,12 @@ fun MainScreen(
                    }
 
                    MainViewModel.State.EMPTY -> {
-
+                       Spacer(Modifier.weight(1f))
+                       Text(
+                           text = "Oops looks like there are no ${if (shouldFilterFavourites) "favourites" else "dogs" }",
+                           modifier = Modifier.align(Alignment.CenterHorizontally)
+                       )
+                       Spacer(Modifier.weight(1f))
                    }
 
                    MainViewModel.State.ERROR -> {
