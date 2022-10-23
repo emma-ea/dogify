@@ -22,7 +22,7 @@ kotlin {
         val sqlDelightVersion = "1.5.3"
         val commonMain by getting {
             dependencies {
-                implementation("io.insert-koin:koin-core:$koinVersion")
+                api("io.insert-koin:koin-core:$koinVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
