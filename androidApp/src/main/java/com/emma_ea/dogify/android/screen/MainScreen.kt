@@ -19,6 +19,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.emma_ea.dogify.android.viewmodel.MainViewModel
 import com.emma_ea.dogify.android.viewmodel.State
+import com.emma_ea.dogify.model.Breed
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import java.util.*
@@ -69,9 +70,10 @@ fun MainScreen(
                        Spacer(Modifier.weight(1f))
                    }
 
-                   MainViewModel.State.NORMAL -> {
-
-                   }
+                   MainViewModel.State.NORMAL -> Breeds(
+                       breeds = breeds,
+                       onFavouriteTapped = viewModel::onFavouriteTapped
+                   )
 
                    MainViewModel.State.EMPTY -> {
                        Spacer(Modifier.weight(1f))
@@ -98,25 +100,6 @@ fun MainScreen(
 }
 
 @Composable
-fun CustomText(
-    text: String
-) {
-    Text(
-        text = buildAnnotatedString {
-            withStyle(
-                style = SpanStyle(
-                    color = Color.Blue,
-                    fontSize = 48.sp,
-                    fontStyle = FontStyle.Italic
-                )
-            ) {
-                append(text[0].uppercase())
-            }
-            withStyle(style = SpanStyle(textDecoration = TextDecoration.Underline)) {
-                append(text.substring(1))
-            }
-        },
-        color = Color.DarkGray,
-        fontSize = 30.sp
-    )
+fun Breeds(breeds: List<Breed>, onFavouriteTapped: (Breed) -> Unit = {}) {
+
 }
