@@ -18,10 +18,11 @@ kotlin {
 
     sourceSets {
         val ktorVersion = "2.1.2"
+        val koinVersion = "3.2.0"
         val sqlDelightVersion = "1.5.3"
         val commonMain by getting {
             dependencies {
-                implementation("io.insert-koin:koin-core:3.2.0")
+                implementation("io.insert-koin:koin-core:$koinVersion")
                 implementation("io.ktor:ktor-client-core:$ktorVersion")
                 implementation("io.ktor:ktor-client-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-logging:$ktorVersion")
@@ -40,6 +41,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("io.insert-koin:koin-android:$koinVersion")
                 implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
