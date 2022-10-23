@@ -1,8 +1,8 @@
 package com.emma_ea.dogify.android
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Scaffold
+import androidx.compose.material.Switch
 import androidx.compose.material.Text
 import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
@@ -18,8 +18,10 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.toUpperCase
 import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.emma_ea.dogify.android.viewmodel.MainViewModel
+import com.emma_ea.dogify.android.viewmodel.State
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import java.util.*
@@ -43,7 +45,28 @@ fun MainScreen(
             state = rememberSwipeRefreshState(isRefreshing = isRefreshing),
             onRefresh = viewModel::refresh
         ) {
-            
+           Column(
+               Modifier
+                   .fillMaxSize()
+                   .padding(8.dp)
+           ) {
+              Row(
+                  Modifier
+                      .wrapContentWidth(Alignment.End)
+                      .padding(8.dp)
+              ) {
+                  Text(text = "Filter Favourites")
+                  Switch(
+                      checked = shouldFilterFavourites,
+                      modifier = Modifier
+                          .padding(horizontal = 8.dp),
+                      onCheckedChange = {
+                          viewModel.onToggleFavouriteFilter()
+                      }
+                  )
+              }
+               
+           } 
         }
     }
 
