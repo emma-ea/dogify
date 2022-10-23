@@ -1,6 +1,6 @@
 package com.emma_ea.dogify.repository
 
-import com.emma_ea.dogify.dogify.db.DogifyDatabase
+import com.emma_ea.dogify.db.DogifyDatabase
 import com.emma_ea.dogify.model.Breed
 import com.emma_ea.dogify.utils.DispatcherProvider
 import com.squareup.sqldelight.runtime.coroutines.asFlow

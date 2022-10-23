@@ -1,6 +1,5 @@
 package com.emma_ea.dogify.db
 
-import com.emma_ea.dogify.dogify.db.DogifyDatabase
 import com.squareup.sqldelight.db.SqlDriver
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
 import org.koin.core.scope.Scope
