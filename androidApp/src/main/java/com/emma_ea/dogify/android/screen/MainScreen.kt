@@ -1,10 +1,7 @@
 package com.emma_ea.dogify.android
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Switch
-import androidx.compose.material.Text
-import androidx.compose.material.rememberScaffoldState
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -65,7 +62,25 @@ fun MainScreen(
                       }
                   )
               }
-               
+               when (state) {
+                   MainViewModel.State.LOADING -> {
+                       Spacer(Modifier.weight(1f))
+                       CircularProgressIndicator(Modifier.align(Alignment.CenterHorizontally))
+                       Spacer(Modifier.weight(1f))
+                   }
+
+                   MainViewModel.State.NORMAL -> {
+
+                   }
+
+                   MainViewModel.State.EMPTY -> {
+
+                   }
+
+                   MainViewModel.State.ERROR -> {
+                       
+                   }
+               }
            } 
         }
     }
