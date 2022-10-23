@@ -1,6 +1,8 @@
 package com.emma_ea.dogify.di
 
 import com.emma_ea.dogify.api.BreedsApi
+import com.emma_ea.dogify.db.createDriver
+import com.emma_ea.dogify.dogify.db.DogifyDatabase
 import com.emma_ea.dogify.model.FetchBreedUsecase
 import com.emma_ea.dogify.model.GetBreedsUsecase
 import com.emma_ea.dogify.model.ToggleFavouriteStateUsecase
@@ -28,6 +30,10 @@ private val apiModule = module {
 
 private val utilityModule = module {
     factory { getDispatcherProvider() }
+}
+
+private val databaseModule = module {
+    single { DogifyDatabase(createDriver("dogify.db")) }
 }
 
 private val sharedModules = listOf(
