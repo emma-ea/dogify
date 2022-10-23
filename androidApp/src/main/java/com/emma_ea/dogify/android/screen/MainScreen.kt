@@ -78,7 +78,12 @@ fun MainScreen(
                    }
 
                    MainViewModel.State.ERROR -> {
-                       
+                       Spacer(Modifier.weight(1f))
+                       Text(
+                           text = "Oops something went wrong...",
+                           modifier = Modifier.align(Alignment.CenterHorizontally)
+                       )
+                       Spacer(Modifier.weight(1f))
                    }
                }
            } 
