@@ -8,6 +8,8 @@
     <application
         android:allowBackup="false"
         android:supportsRtl="true"
+        android:label="Dogify"
+        android:icon="@drawable/ic_pets"
         android:name=".DogifyApplication"
         android:theme="@style/AppTheme">
         <activity
