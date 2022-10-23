@@ -17,9 +17,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import coil.request.ImageRequest
+import com.emma_ea.dogify.android.R
 import com.emma_ea.dogify.android.viewmodel.MainViewModel
 import com.emma_ea.dogify.model.Breed
+import com.emma_ea.dogify.utils.DispatcherProvider
+import com.google.accompanist.coil.CoilPainterDefaults
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
@@ -50,9 +57,10 @@ fun MainScreen(
                    .padding(8.dp)
            ) {
               Row(
-                  Modifier
+                  modifier = Modifier
                       .wrapContentWidth(Alignment.End)
-                      .padding(8.dp)
+                      .padding(8.dp),
+                  verticalAlignment = Alignment.CenterVertically
               ) {
                   Text(text = "Filter Favourites")
                   Switch(
@@ -114,7 +122,15 @@ fun Breeds(breeds: List<Breed>, onFavouriteTapped: (Breed) -> Unit = {}) {
         items(breeds) {
             Column(Modifier.padding(8.dp)) {
                 Image(
-                    painter = rememberCoilPainter(request = it.imageUrl),
+                    painter = rememberCoilPainter(
+                        request = it.imageUrl,
+                        fadeIn = true,
+                        requestBuilder = {
+                            crossfade(true)
+                            placeholder(R.drawable.ic_pets)
+                            error(R.drawable.ic_pets)
+                        }
+                    ),
                     contentDescription = "${it.name}-image",
                     modifier = Modifier
                         .aspectRatio(1f)
