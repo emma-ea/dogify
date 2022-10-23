@@ -90,12 +90,13 @@ class MainViewModel(
         }
     }
 
+    enum class State {
+        LOADING, NORMAL, ERROR, EMPTY
+    }
+
+    enum class Event {
+        ERROR
+    }
+
 }
 
-enum class State {
-    LOADING, NORMAL, ERROR, EMPTY
-}
-
-enum class Event {
-    ERROR
-}
