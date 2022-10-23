@@ -1,8 +1,8 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("com.squareup.sqldelight")
 }
-
 kotlin {
     android()
     
@@ -18,6 +18,7 @@ kotlin {
 
     sourceSets {
         val ktorVersion = "2.1.2"
+        val sqlDelightVersion = "1.5.3"
         val commonMain by getting {
             dependencies {
                 implementation("io.insert-koin:koin-core:3.2.0")
@@ -27,6 +28,8 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
                 implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4-native-mt")
+                implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+                implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")
             }
         }
         val commonTest by getting {
@@ -37,6 +40,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:$ktorVersion")
+                implementation("com.squareup.sqldelight:android-driver:$sqlDelightVersion")
             }
         }
         val androidTest by getting
@@ -50,6 +54,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
             dependencies {
                 implementation("io.ktor:ktor-client-ios:$ktorVersion")
+                implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
             }
         }
         val iosX64Test by getting
@@ -70,5 +75,12 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 32
+    }
+}
+
+sqldelight {
+    database("DogifyDatabase") {
+        packageName = "com.emma_ea.dogify.db"
+        sourceFolders = listOf("sqldelight")
     }
 }
