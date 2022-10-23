@@ -30,6 +30,8 @@ import com.google.accompanist.coil.CoilPainterDefaults
 import com.google.accompanist.coil.rememberCoilPainter
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 @Composable
@@ -71,6 +73,8 @@ fun MainScreen(
                           viewModel.onToggleFavouriteFilter()
                       }
                   )
+                  Spacer(Modifier.weight(1f))
+                  Text(text = "Count: ${viewModel.favouritesCount.value}")
               }
                when (state) {
                    MainViewModel.State.LOADING -> {
@@ -111,6 +115,15 @@ fun MainScreen(
                        }
                    }
                }
+
+               if (isRefreshing) {
+                   snackbarCoroutineScope.launch {
+                       scaffoldState.snackbarHostState.apply {
+                           currentSnackbarData?.dismiss()
+                           showSnackbar("Clearing database. Loading new data...")
+                       }
+                   }
+               }
            } 
         }
     }
@@ -129,6 +142,7 @@ fun Breeds(breeds: List<Breed>, onFavouriteTapped: (Breed) -> Unit = {}) {
                             crossfade(true)
                             placeholder(R.drawable.ic_pets)
                             error(R.drawable.ic_pets)
+                            dispatcher(Dispatchers.IO)
                         }
                     ),
                     contentDescription = "${it.name}-image",
